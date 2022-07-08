@@ -1,0 +1,16 @@
+<div *ngIf="hero">
+  <!-- Se tiver alguma informação no hero ele entra nesse IF -->
+  <h2>{{ hero.name | uppercase }} Details</h2>
+
+  <div><span>id: </span>{{ hero.id }}</div>
+  <div><span>name: </span>{{ hero.name }}</div>
+
+  <div>
+    <label for="" name>Hero name:</label>
+    <input id="name" [(ngModel)]="hero.name" type="text" placeholder="name" />
+  </div>
+</div>
+
+<!-- IMPORTANTE
+PARA SE UTILIZAR O NGMODEL EU TENHO QUE IMPORTAR O FORMS MODULO NO NG MODULE PRINCIPAL
+-->
