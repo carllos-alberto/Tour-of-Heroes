@@ -8,6 +8,10 @@ import { HeroDetailComponent } from './hero-detail/hero-datail.component';
 
 //Imports
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+//Material
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -19,7 +23,10 @@ import { FormsModule } from '@angular/forms';
 
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule
+
   ],
 
   providers: [],
