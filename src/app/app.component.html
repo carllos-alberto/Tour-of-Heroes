@@ -1,12 +1,24 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
+
+  <span fxFlex></span>
+
+  <button mat-icon-button aria-label="Dashboard" routerLink="/dashboard"   matTooltip="Dashboard">
+    <mat-icon>dashboard</mat-icon>
+  </button>
+
+  <button mat-icon-button aria-label="Hereos list" routerLink="/heroes"   matTooltip="Heroes">
+    <mat-icon>sports_martial_arts</mat-icon>
+  </button>
+
+
 </mat-toolbar>
 
-<p>=======================================================================</p>
 
-<div class="content">
+<div class="content" fxLayoutGap="12px">      <!-- fxLayoutGap realiza a distância entre os componentes de na página -->
 
-  <app-heroes></app-heroes>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
 
 </div>
 

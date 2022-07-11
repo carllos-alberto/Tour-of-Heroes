@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 /* import { HEROES } from '../mock-heroes'; */
 import { Hero } from './hero.mode'; // Importando a inteface do model para pode utiliza-la
@@ -16,11 +17,12 @@ export class HeroesComponent implements OnInit {
   };
  */
 
+displayedColumns: string[]= ['id', 'name'];
 heroes: Hero[] = [];
-selectedHero?: Hero;
 
 
-constructor(private heroservice: HeroService) {
+
+constructor(private heroservice: HeroService, ) {
 
 }
 
@@ -38,9 +40,7 @@ this.heroservice.getHeroes().subscribe(
 
 
 
-onSelect(hero: Hero): void {
-  this.selectedHero = hero;
-}
+
 
 
 }
