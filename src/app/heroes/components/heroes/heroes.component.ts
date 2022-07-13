@@ -1,8 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
-/* import { HEROES } from '../mock-heroes'; */
-import { Hero } from './hero.mode'; // Importando a inteface do model para pode utiliza-la
-import { HeroService } from '../hero.service';
+import { Hero } from '../../../core/models/hero.mode'; // Importando a inteface do model para pode utiliza-la
+import { HeroService } from '../../../core/services/hero.service';
 
 
 @Component({
@@ -20,27 +19,18 @@ export class HeroesComponent implements OnInit {
 displayedColumns: string[]= ['id', 'name'];
 heroes: Hero[] = [];
 
-
-
-constructor(private heroservice: HeroService, ) {
+constructor(private heroService: HeroService) {
 
 }
-
 ngOnInit(): void {
     this.getHeroes();
 }
 
-
 getHeroes(): void {
-this.heroservice.getHeroes().subscribe(
+this.heroService.getHeroes().subscribe(
   (heroes) => (this.heroes = heroes)
 
 );
 }
-
-
-
-
-
 
 }
