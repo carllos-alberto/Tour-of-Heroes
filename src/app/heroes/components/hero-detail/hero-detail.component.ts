@@ -16,6 +16,7 @@ import { Hero } from '../../../core/models/hero.mode';
 export class HeroDetailComponent implements OnInit {
 
   hero!: Hero;
+  isEditing!: boolean;
 
 constructor(
   private heroService: HeroService,
@@ -31,13 +32,42 @@ ngOnInit(): void {
 }
 
 getHero(): void {
-  const id =  Number (this.route.snapshot.paramMap.get('id'));      /* Pega o número do ID no endereço */
+  const paramId =   (this.route.snapshot.paramMap.get('id'));      /* Pega o número do ID na barra de endereço */
 
-  this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));
+  if (paramId === 'new') {
+    this.isEditing = false;
+    this.hero = { name: ''} as Hero;
+  } else {
+    this.isEditing = true;
+    const id = Number(paramId);
+    this.heroService.getOne(id).subscribe((hero) => (this.hero = hero));
+  }
 }
 
 goBack(): void {
  this.location.back();
 }
+
+
+isFormValid(): boolean {
+  return !!this.hero.name.trim();      /* Método para deixar o salve desabilitado caso não tenha digitos nele */
+}
+/*
+se vier vazio = ''
+negar o vazio 1x = ! => true
+negar o vazio 2x = !! => false
+*/
+
+create(): void {
+  this.heroService.create(this.hero).subscribe(() => this.goBack());
+}
+
+
+update(): void {
+  this.heroService.update(this.hero).subscribe(() => this.goBack());
+}
+
+
+
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-page-not-found',
@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   <mat-card>
     <mat-card-title>404: page Not Found </mat-card-title>
 
-    <mat-card-content>  We couldn´t find that page! Not even with x-ray vision </mat-card-content>
+    <mat-card-content>  We couldn't find that page! Not even with x-ray vision </mat-card-content>
 
     <mat-card-actions>
       <button mat-raised-button color="primary" routerLink="/">

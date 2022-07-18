@@ -1,12 +1,10 @@
-<div *ngIf="hero">   <!-- Se tiver alguma informação no hero ele entra nesse IF -->
-
-  <h1>{{ hero.name | uppercase }} Details</h1>
+  <h1>{{isEditing ? "Update" : "Create"}} Hero</h1>
 
   <mat-card >
 
     <mat-card-content fxLayout="column">
 
-      <mat-form-field  appearance="fill">
+      <mat-form-field  *ngIf="isEditing"    appearance="fill">
         <mat-label>ID</mat-label>
         <input matInput disabled [value]=" hero.id">
       </mat-form-field>
@@ -25,7 +23,31 @@
 
     <mat-card-actions>
 
+      <button
+      color="primary"
+      [disabled]="!isFormValid()"
+      *ngIf="!isEditing"
+      mat-raised-button (click)="create()">create
+    </button>
+
+    <button
+      color="primary"
+      [disabled]="!isFormValid()"
+      *ngIf="isEditing"
+      mat-raised-button (click)="update()">update
+    </button>
+
+
+
+
+
+
+
+
+
+
       <button mat-raised-button (click)="goBack()">Go Back</button>
+
     </mat-card-actions>
   </mat-card>
 
@@ -39,7 +61,7 @@
 
 
 
-  
+
 
 <!--   <div><span>id: </span>{{ hero.id }}</div>
   <div><span>name: </span>{{ hero.name }}</div> -->
@@ -51,7 +73,7 @@
 
 
 
-</div>
+
 
 <!-- IMPORTANTE
 PARA SE UTILIZAR O NGMODEL EU TENHO QUE IMPORTAR O FORMS MODULO NO NG MODULE PRINCIPAL

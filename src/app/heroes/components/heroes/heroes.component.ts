@@ -10,11 +10,7 @@ import { HeroService } from '../../../core/services/hero.service';
   styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit {
-/*   hero: Hero = {
-    id: 1,
-    name: 'Wolverine',
-  };
- */
+
 
 displayedColumns: string[]= ['id', 'name'];
 heroes: Hero[] = [];
@@ -27,7 +23,7 @@ ngOnInit(): void {
 }
 
 getHeroes(): void {
-this.heroService.getHeroes().subscribe(
+this.heroService.getAll().subscribe(
   (heroes) => (this.heroes = heroes)
 
 );

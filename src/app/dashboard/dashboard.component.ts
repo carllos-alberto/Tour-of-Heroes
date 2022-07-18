@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
 
   getHeroes(): void {
-    this.hereoService.getHeroes().subscribe(heroes => this.heroes = heroes.slice(1, 5 )) /* O slice pega a posição do vetor, nesse caso da posição 0 até a 4 */
+    this.hereoService.getAll().subscribe(heroes => this.heroes = heroes.slice(1, 5 )) /* O slice pega a posição do vetor, nesse caso da posição 0 até a 4 */
   }
 
 }

@@ -2,7 +2,7 @@ import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { Injectable } from '@angular/core';
-import { finalize, Observable, of, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Hero } from '../models/hero.mode';
 /* import { HEROES } from './mock-heroes'; */
 
@@ -22,37 +22,52 @@ constructor(
 }
 
 // GET /heroes
-getHeroes(): Observable<Hero[]> {
+getAll(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesURL).pipe(
     tap((heroes) => this.log(`fetched ${heroes.length} hero(es)`))
-    
-  );
 
-// Criando variável para observable
-/* const heroes = of(HEROES); */  /* o OF vai transforma a lista HEROES em um observable */
-// Adicionando mensagem ao serviço HeroService
-/* this.log('fetched heroes');
-  return heroes; */
+  );
+}
+
+// GET /heroes/id
+getOne(id: number): Observable<Hero>{
+  return this.http.get<Hero>(`${this.heroesURL}/${id}`).pipe(                           // o pipe aqui representa a mensagem que será executada
+    tap((hero) => this.log(`fetched ${this.descAttributes(hero)}`))
+  );
 }
 
 
+// POST /Heroes
+  create(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesURL, hero).pipe(
+      tap((hero) => this.log(`created ${this.descAttributes(hero)}`))
+    );
 
-// GET /heroes/id
-getHero(id: number): Observable<Hero>{
-  return this.http.get<Hero>(`${this.heroesURL}/${id}`).pipe(
-    tap((hero) => this.log(`fetched hero id=${id} and name=${hero.name}`))
-  );
+  }
 
- /*  const hero = HEROES.find(hero => hero.id === id)!; */       /* O find vai percorrer cada item de HERORES e  quando a condição for verdadeira ele retorna-rá a informação */
-  /* this.log(`fetched id=${id}`);
-  return of(hero); */
+
+//Put /heores/id
+update(hero: Hero): Observable<Hero>{
+  return this.http.put<Hero>(`${this.heroesURL}/${hero.id}`, hero).pipe(
+    tap((hero) => this.log(`updated ${this.descAttributes(hero)}`))
+    );
 }
 
 private log(message: string): void {
-  this.messageService.add(`HeroService: ${message}`)
+  this.messageService.add(`HeroService: ${message}`);
+}
+
+
+private descAttributes(hero: Hero): string {
+  return `Hero ID=${hero.id} and Name=${hero.name}`;
 }
 
 }
+
+
+
+
+
 
 
 /*
